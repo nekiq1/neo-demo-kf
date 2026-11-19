@@ -151,7 +151,7 @@ function AdminPage() {
       <div className="mt-3 grid grid-cols-3 gap-3">
         <Stat label="Заезды" value={String(visits.length)} />
         <Stat label="Выполнено" value={String(done.length)} />
-        <Stat label="Получено" value={rub(money)} />
+        <Stat label="Получено" value={money > 0 ? rub(money) : "0 ₽"} />
       </div>
 
       <div className="mt-3 grid grid-cols-2 gap-3">
@@ -229,9 +229,9 @@ const PANEL_TITLE: Record<Exclude<Panel, null>, string> = {
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-[28px] bg-card px-4 pt-5 pb-4 ring-1 ring-line">
-      <p className="text-base text-muted">{label}</p>
-      <p className="mt-5 text-4xl font-bold">{value}</p>
+    <div className="flex flex-col justify-between min-h-[110px] rounded-[24px] bg-card px-4 py-4 ring-1 ring-line">
+      <p className="text-sm text-muted truncate">{label}</p>
+      <p className="mt-2 text-2xl font-bold text-white truncate" title={value}>{value}</p>
     </div>
   );
 }

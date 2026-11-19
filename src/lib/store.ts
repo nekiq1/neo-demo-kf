@@ -1,4 +1,4 @@
-import { create } from "zustand";
+﻿import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { useEffect, useState } from "react";
 import {
@@ -67,7 +67,7 @@ export const useStudio = create<StudioState>()(
         }));
       },
     }),
-    { name: "koreafan-studio-v1", skipHydration: true },
+    { name: "koreafan-studio-v3", skipHydration: true },
   ),
 );
 

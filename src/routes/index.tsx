@@ -108,7 +108,7 @@ function Home() {
         </div>
       ) : null}
 
-      <h1 className="rise mt-5 mb-2 text-[28px] font-extrabold tracking-[-0.02em] text-white">{data.brandFull}</h1>
+      <h1 className="rise mt-5 mb-2 text-[34px] font-black leading-[1.1] tracking-[-0.03em] text-white">{data.brandFull}</h1>
       <p className="rise mb-[18px] max-w-[360px] text-[15px] leading-[1.45] text-muted">{data.tagline}</p>
 
       <div className="mb-2.5 grid grid-cols-2 gap-2.5">

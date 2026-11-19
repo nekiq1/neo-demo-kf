@@ -164,7 +164,7 @@ function ChatFab({ tone }: { tone: "blue" | "orange" }) {
         aria-label="Написать в студию"
         onClick={() => setOpen(true)}
         style={{ ["--glow" as string]: glow }}
-        className={`fab-glow fab-pos grid size-14 place-items-center rounded-full ${btn}`}
+        className={`fab-glow absolute bottom-24 right-4 z-50 grid size-14 place-items-center rounded-full shadow-[0_0_30px_rgba(59,130,246,0.5)] ${btn}`}
       >
         <MessageCircle className="size-7" />
       </button>
@@ -215,25 +215,38 @@ function ChatFab({ tone }: { tone: "blue" | "orange" }) {
 function SiteFooter() {
   const studio = useStudio();
   return (
-    <footer className="mt-6 text-sm text-muted">
-      <div className="flex items-center justify-between px-1 py-2">
-        <span className="font-bold text-white">{studio.brandFull}</span>
-        <a
-          href={studio.vk || "https://vk.com/koreafanauto"}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-1 text-[13px] font-medium"
-        >
-          ВКонтакте <ArrowUpRight className="size-3.5" />
-        </a>
+    <footer className="mt-8 mb-4 text-sm text-muted">
+      <div className="flex flex-col items-center justify-center gap-4 border-t border-white/10 pt-6">
+        <div className="flex items-center gap-3">
+          {studio.telegram ? (
+            <a href={studio.telegram} target="_blank" rel="noreferrer" className="grid size-10 place-items-center rounded-full bg-card hover:bg-white/10 ring-1 ring-line transition">
+              <Send className="size-[18px]" />
+            </a>
+          ) : null}
+          {studio.vk ? (
+            <a href={studio.vk} target="_blank" rel="noreferrer" className="grid size-10 place-items-center rounded-full bg-card hover:bg-white/10 ring-1 ring-line transition">
+              <svg viewBox="0 0 24 24" fill="currentColor" className="size-5">
+                <path d="M13.162 18.994c.609 0 .858-.406.851-.915-.031-1.917.714-2.949 2.059-1.604 1.488 1.488 1.796 2.519 3.603 2.519h3.2c.808 0 1.126-.26 1.126-.668 0-.863-1.421-2.386-2.625-3.504-1.686-1.565-1.765-1.602-.313-3.486 1.801-2.339 4.157-5.336 2.073-5.336h-3.981c-.772 0-.828.435-1.103 1.083-.995 2.347-2.886 5.387-3.604 4.922-.751-.485-.407-2.406-.35-5.261.015-.754.011-1.271-1.141-1.539-.629-.145-1.241-.205-1.809-.205-2.273 0-3.841.953-2.95 1.942 1.077 1.193-1.385 5.543-1.407 5.543-.593 0-2.581-5.836-2.797-6.924-.155-.781-.433-1.03-1.204-1.03h-3.46c-.898 0-1.427.493-.993 1.42 1.268 2.708 3.352 7.502 5.813 9.554 1.725 1.441 4.142 1.422 6.086 1.422z"/>
+              </svg>
+            </a>
+          ) : null}
+          {studio.whatsapp ? (
+            <a href={studio.whatsapp} target="_blank" rel="noreferrer" className="grid size-10 place-items-center rounded-full bg-card hover:bg-white/10 ring-1 ring-line transition">
+              <Phone className="size-[18px]" />
+            </a>
+          ) : null}
+        </div>
+        <div className="flex flex-col items-center gap-2">
+          <span className="font-bold text-white">{studio.brandFull}</span>
+          <div className="flex gap-4 text-[11px] text-[#3f3f46]">
+            <Link to="/legal" className="hover:text-white transition">Документы и политика</Link>
+            <Link to="/admin" className="hover:text-white transition">Админ</Link>
+          </div>
+          <p className="text-center text-[11px] leading-relaxed text-[#3f3f46]">
+            © {new Date().getFullYear()} {studio.brandFull}. Информация об услугах и стоимости уточняется при обращении.
+          </p>
+        </div>
       </div>
-      <div className="mt-2 flex flex-wrap justify-center gap-x-4 gap-y-1 text-[11px] text-[#3f3f46]">
-        <Link to="/legal">Документы и политика</Link>
-        <Link to="/admin">Админ</Link>
-      </div>
-      <p className="mt-3 text-center text-[11px] leading-relaxed text-[#3f3f46]">
-        © {new Date().getFullYear()} {studio.brandFull}. Информация об услугах и стоимости уточняется при обращении.
-      </p>
     </footer>
   );
 }
