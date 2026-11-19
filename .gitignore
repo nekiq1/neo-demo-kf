@@ -1,0 +1,17 @@
+.env
+.env.local
+.env.*.local
+node_modules
+.output
+.vercel
+dist
+*.log
+
+# Railway / secrets
+.env*
+!.env.example
+.railway/
+railway-volume/
+*.sqlite
+*.db
+.DS_Store

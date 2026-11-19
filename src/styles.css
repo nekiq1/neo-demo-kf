@@ -1,0 +1,165 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #000000;
+  --color-fg: #f4f4f5;
+  --color-muted: #8b8b96;
+  --color-dim: #71717a;
+  --color-card: #141416;
+  --color-card-2: #0e0e12;
+  --color-line: #222228;
+  --color-blue: #3b82f6;
+  --color-on-blue: #ffffff;
+  --color-orange: #f0a03a;
+  --color-on-orange: #1c1306;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --radius-card: 20px;
+  --radius-pill: 14px;
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  html,
+  body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+  }
+  body {
+    font-family: var(--font-sans);
+    min-height: 100dvh;
+    text-rendering: optimizeLegibility;
+  }
+  input,
+  textarea,
+  select {
+    font: inherit;
+    color: inherit;
+    background: transparent;
+    color-scheme: dark;
+  }
+  ::selection {
+    background: var(--color-blue);
+    color: var(--color-on-blue);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ken {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.07);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--glow) 55%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 22px 6px color-mix(in srgb, var(--glow) 35%, transparent);
+  }
+}
+
+@keyframes bar-in {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.rise {
+  animation: rise 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.hero-ken {
+  animation: ken 16s ease-in-out infinite alternate;
+}
+.fab-glow {
+  animation: pulse-glow 2.8s ease-in-out infinite;
+}
+.fab-pos {
+  position: fixed;
+  right: max(1rem, calc((100vw - 30rem) / 2 + 1rem));
+  bottom: calc(5.5rem + env(safe-area-inset-bottom));
+  z-index: 30;
+}
+
+.bottom-nav {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+  background: rgba(7, 7, 8, 0.92);
+  border-top: 1px solid var(--color-line);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.bottom-nav a {
+  display: flex;
+  max-width: 110px;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  border-radius: 10px;
+  padding: 10px 6px;
+  font-size: 12px;
+  color: var(--color-muted);
+  transition: color 0.15s;
+}
+.bottom-nav a.active {
+  background: var(--color-card);
+  color: var(--color-blue);
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .hero-ken,
+  .fab-glow,
+  .bar-in {
+    animation: none !important;
+  }
+}
+
+/* Админка: вид как на задеплоенной версии (тёмно-синий фон, круглые кнопки, свечение) */
+html:has(body.admin-bg),
+body.admin-bg {
+  background: radial-gradient(120% 55% at 50% 0%, #0b1a33 0%, #050a14 50%, #02040a 100%) fixed;
+}
+.admin-look {
+  --color-blue: #3b9bff;
+  --color-card: #12172a;
+  --color-card-2: #0c1020;
+  --color-line: #232a3d;
+  --radius-pill: 2rem;
+  --radius-card: 1.75rem;
+}
+.admin-look .glow {
+  box-shadow: 0 0 28px rgba(59, 155, 255, 0.38);
+}
+.admin-look .bg-card {
+  background-image: linear-gradient(160deg, rgba(255, 255, 255, 0.04), transparent 70%);
+}
